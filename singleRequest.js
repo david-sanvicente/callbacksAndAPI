@@ -1,6 +1,6 @@
 const request = require("request")
 
-module.exports = (poke) => {
+module.exports = (poke, callback) => {
   request(
     `https://pokeapi.co/api/v2/pokemon/${poke.name}`,
     { json: true },
@@ -8,13 +8,7 @@ module.exports = (poke) => {
       if (err) {
         return console.log(err)
       }
-      console.log(body.name, body.height, body.weight)
-      //   allWeight += body.weight
-      //   allHeight += body.height
-      //   totalPoke++
-      //   console.log(
-      //     `allWeight: ${allWeight} allHeight: ${allHeight} totalPoke: ${totalPoke}\n`
-      //   )
+      callback(body)
     }
   )
 }

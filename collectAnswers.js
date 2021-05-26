@@ -5,7 +5,7 @@ const rl = readLine.createInterface({
   output: process.stdout,
 })
 
-module.exports = (questions, done) => {
+module.exports = (questions, callback) => {
   const answers = []
   const [question] = questions
 
@@ -14,7 +14,7 @@ module.exports = (questions, done) => {
     if (answers.length < questions.length) {
       rl.question(questions[answers.length], questionAnswered)
     } else {
-      done(answers)
+      callback(answers)
     }
   }
 
