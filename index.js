@@ -8,9 +8,22 @@ collectAnswers(questions, (answers) => {
   const limit = answers[0]
   const offset = answers[1]
   queryPoke(limit, offset, (pokemon) => {
-    pokemon.map((poke) => {
+    let totalWeight = 0
+    let totalHeight = 0
+    let idx = 0
+    pokemon.map((poke, i) => {
       singleReq(poke, (body) => {
-        console.log(body.name, body.height, body.weight)
+        totalWeight += body.weight
+        totalHeight += body.height
+        idx++
+        // console.log(idx, body.name, body.height, body.weight)
+        if (idx === pokemon.length) {
+          // console.log(`Total weight: ${totalWeight}`)
+          // console.log(`Total height: ${totalHeight}`)
+          // console.log(`Total Pokemon: ${idx}`)
+          console.log(`Average weight: ${totalWeight / idx}`)
+          console.log(`Average height: ${totalHeight / idx}`)
+        }
       })
     })
   })
